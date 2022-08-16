@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages{
+    stage('Build') {
+        
+        git branch: 'master', url:'https://github.com/Sannidhi1008/PythonCode.git', credentialsId:'github_cred'
+    
+       
+    }
+     stage('Test') {
+            steps {
+              checkout([$class: 'GitSCM', 
+                branches: [[name: '*/master']],
+                credentialsId:'github_cred',
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CleanCheckout']],
+                submoduleCfg: [], 
+                userRemoteConfigs: [[url: 'https://github.com/Sannidhi1008/PythonCode.git']]])
+              sh "ls -ltr"
+          }
+        }
+    }    
+}
