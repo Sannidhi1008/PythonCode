@@ -2,8 +2,11 @@ pipeline {
     agent any
     stages{
     stage('Build') {
+    steps{
         
         git branch: 'master', url:'https://github.com/Sannidhi1008/PythonCode.git', credentialsId:'github_cred'
+        
+        }
     
        
     }
